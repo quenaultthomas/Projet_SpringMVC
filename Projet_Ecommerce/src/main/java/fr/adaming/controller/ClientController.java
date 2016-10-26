@@ -1,5 +1,10 @@
 package fr.adaming.controller;
 
-public class ClientController {
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ClientController{
+
+	
 
 }
