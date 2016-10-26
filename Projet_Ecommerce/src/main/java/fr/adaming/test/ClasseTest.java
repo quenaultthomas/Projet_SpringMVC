@@ -1,9 +1,14 @@
 package fr.adaming.test;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 public class ClasseTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String configLocation = "C:\\Users\\inti0292\\git\\Projet_SpringMVC\\Projet_Ecommerce\\src\\main\\webapp\\WEB-INF\\application-context.xml";
+		 
+        ApplicationContext context = new FileSystemXmlApplicationContext(configLocation);
 
 	}
 
