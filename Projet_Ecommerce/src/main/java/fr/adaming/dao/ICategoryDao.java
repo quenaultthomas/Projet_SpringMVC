@@ -5,13 +5,13 @@ import java.util.List;
 import fr.adaming.model.Category;
 
 
-public interface ICategory {
+public interface ICategoryDao {
 	
 	public void addCategoryDao(Category c);
 	
-	public void delCategoryDao(Category c);
+	public void delCategoryDao(long id);
 	
-	public Category upCategoryDao(Category c);
+	public void upCategoryDao(Category c);
 	
 	public List<Category> getAllategories();
 	
