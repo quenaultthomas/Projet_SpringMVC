@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,8 +32,8 @@ public class Category implements Serializable {
 	@Column
 	private String description;
 	
-@OneToMany(mappedBy = "categorie")
-private Collection<Product> produits = new ArrayList<Product>();
+	@OneToMany(mappedBy = "categorie", cascade=CascadeType.REMOVE, fetch=FetchType.LAZY)
+	private Collection<Product> produits = new ArrayList<Product>();
 
 	/**
 	 * 
