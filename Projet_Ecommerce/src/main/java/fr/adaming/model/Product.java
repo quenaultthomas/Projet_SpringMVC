@@ -158,7 +158,7 @@ public class Product implements Serializable {
 	public String toString() {
 		return "Product [id_p=" + id_p + ", nom=" + nom + ", description="
 				+ description + ", quantite=" + quantite + ", prix=" + prix
-				+ ", categorie=" + categorie + "]";
+				 + "]";
 	}
 
 	
