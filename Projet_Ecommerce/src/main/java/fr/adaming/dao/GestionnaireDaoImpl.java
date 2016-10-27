@@ -33,7 +33,7 @@ public class GestionnaireDaoImpl implements IGestionnaireDao {
 	}
 
 	@Override
-	public void delCategoryDao(long id) {
+	public void delCategoryDao(int id) {
 		Session s = sf.getCurrentSession();
 		Category cat = (Category) s.get(Category.class, id);
 		s.delete(cat);
@@ -56,7 +56,7 @@ public class GestionnaireDaoImpl implements IGestionnaireDao {
 	}
 
 	@Override
-	public Category getCategoryById(long id) {
+	public Category getCategoryById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
