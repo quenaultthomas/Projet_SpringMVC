@@ -3,6 +3,7 @@ package fr.adaming.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Category implements Serializable {
 	private String description;
 	
 @OneToMany(mappedBy = "categorie")
-private Collection<Product> produits = new ArrayList<Product>();
+private List<Product> produits = new ArrayList<Product>();
 
 	/**
 	 * 
@@ -107,14 +108,14 @@ private Collection<Product> produits = new ArrayList<Product>();
 	/**
 	 * @return the produits
 	 */
-	public Collection<Product> getProduits() {
+	public List<Product> getProduits() {
 		return produits;
 	}
 
 	/**
 	 * @param produits the produits to set
 	 */
-	public void setProduits(Collection<Product> produits) {
+	public void setProduits(List<Product> produits) {
 		this.produits = produits;
 	}
 

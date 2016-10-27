@@ -3,6 +3,7 @@ package fr.adaming.model;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class Commande implements Serializable {
 	
 	@OneToMany
 	@JoinColumn(name = "idCommande")
-	private Collection<LigneDeCommande> ligneCommandes;
+	private  Map<Integer, LigneDeCommande>  ligneCommandes;
 	
 	
 	
@@ -111,19 +112,36 @@ public class Commande implements Serializable {
 		this.client = client;
 	}
 
+//	/**
+//	 * @return the ligneCommandes
+//	 */
+//	public Collection<LigneDeCommande> getLigneCommandes() {
+//		return ligneCommandes;
+//	}
+//
+//	/**
+//	 * @param ligneCommandes the ligneCommandes to set
+//	 */
+//	public void setLigneCommandes(Collection<LigneDeCommande> ligneCommandes) {
+//		this.ligneCommandes = ligneCommandes;
+//	}
+	
 	/**
 	 * @return the ligneCommandes
 	 */
-	public Collection<LigneDeCommande> getLigneCommandes() {
+	public Map<Integer, LigneDeCommande> getLigneCommandes() {
 		return ligneCommandes;
 	}
 
 	/**
 	 * @param ligneCommandes the ligneCommandes to set
 	 */
-	public void setLigneCommandes(Collection<LigneDeCommande> ligneCommandes) {
+	public void setLigneCommandes(Map<Integer, LigneDeCommande> ligneCommandes) {
 		this.ligneCommandes = ligneCommandes;
 	}
+	
+	
+	
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -132,8 +150,7 @@ public class Commande implements Serializable {
 	public String toString() {
 		return "Commande [id_commande=" + id_commande + ", dateDeCommande=" + dateDeCommande + "]";
 	}
-	
-	
+
 	
 	
 	

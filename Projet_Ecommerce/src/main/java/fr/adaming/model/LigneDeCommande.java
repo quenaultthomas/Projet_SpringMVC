@@ -7,38 +7,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ligneDeCommandes")
+@Table(name = "ligneDeCommandes")
 public class LigneDeCommande implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_LigneDeCommande;
 	@Column
 	private int quantité;
 	@Column
 	private int prix;
-	
-	
-//	@ManyToOne
-//	@JoinColumn(name = "id_produit")
-//	private Produit produit;
-	
-	
+
+	@ManyToOne
+	@JoinColumn(name = "id_produit")
+	private Product produit;
+
 	/**
 	 * 
 	 */
 	public LigneDeCommande() {
-		super();
+		
 	}
-
 
 	/**
 	 * @param quantité
@@ -49,7 +48,6 @@ public class LigneDeCommande implements Serializable {
 		this.quantité = quantité;
 		this.prix = prix;
 	}
-
 
 	/**
 	 * @param id_LigneDeCommande
@@ -63,7 +61,6 @@ public class LigneDeCommande implements Serializable {
 		this.prix = prix;
 	}
 
-
 	/**
 	 * @return the id_LigneDeCommande
 	 */
@@ -71,14 +68,13 @@ public class LigneDeCommande implements Serializable {
 		return id_LigneDeCommande;
 	}
 
-
 	/**
-	 * @param id_LigneDeCommande the id_LigneDeCommande to set
+	 * @param id_LigneDeCommande
+	 *            the id_LigneDeCommande to set
 	 */
 	public void setId_LigneDeCommande(int id_LigneDeCommande) {
 		this.id_LigneDeCommande = id_LigneDeCommande;
 	}
-
 
 	/**
 	 * @return the quantité
@@ -87,14 +83,13 @@ public class LigneDeCommande implements Serializable {
 		return quantité;
 	}
 
-
 	/**
-	 * @param quantité the quantité to set
+	 * @param quantité
+	 *            the quantité to set
 	 */
 	public void setQuantité(int quantité) {
 		this.quantité = quantité;
 	}
-
 
 	/**
 	 * @return the prix
@@ -103,16 +98,31 @@ public class LigneDeCommande implements Serializable {
 		return prix;
 	}
 
-
 	/**
-	 * @param prix the prix to set
+	 * @param prix
+	 *            the prix to set
 	 */
 	public void setPrix(int prix) {
 		this.prix = prix;
 	}
 
+	/**
+	 * @return the produit
+	 */
+	public Product getProduit() {
+		return produit;
+	}
 
-	/* (non-Javadoc)
+	/**
+	 * @param produit the produit to set
+	 */
+	public void setProduit(Product produit) {
+		this.produit = produit;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -120,8 +130,5 @@ public class LigneDeCommande implements Serializable {
 		return "LigneDeCommande [id_LigneDeCommande=" + id_LigneDeCommande + ", quantité=" + quantité + ", prix=" + prix
 				+ "]";
 	}
-	
-	
-	
 
 }

@@ -2,13 +2,11 @@ package fr.adaming.test;
 
 import java.util.List;
 
-import org.hibernate.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import fr.adaming.model.Category;
 import fr.adaming.model.Product;
-import fr.adaming.service.ClientServiceImpl;
 import fr.adaming.service.IClientService;
 
 public class ClasseTest {
@@ -40,12 +38,20 @@ public class ClasseTest {
 		}
 
 		 		 
-		 List<Product> liste4  = clientService.SearchByNameCategorie(1);
+		 List<Product> liste4  = clientService.SearchByIdCategorie(1);
 	        
 	        for (Product produit : liste4) {
 				System.out.println(produit);
-	    	}
-
+	    	}   
+	        
+	        
+	        
+	        
+	    
+	     Product prod2 = clientService.SearchByIdProduct(1);
+	     System.out.println("\n Le prodiuit selectionnée est : "+prod2);
 	}
+	
+		
 }
 

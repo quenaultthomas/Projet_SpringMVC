@@ -22,7 +22,7 @@
 
 	<!-- Configuration de l'autorisation -->
 	<security:http>
-		<security:intercept-url pattern="/employe/**"
+		<security:intercept-url pattern="/gestio/**"
 			access="ROLE_ADMIN" />
 
 		<security:form-login login-page="/login"

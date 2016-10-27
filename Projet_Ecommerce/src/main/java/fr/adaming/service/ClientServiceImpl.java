@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.IClientDao;
 import fr.adaming.model.Category;
 import fr.adaming.model.Client;
+import fr.adaming.model.Commande;
+import fr.adaming.model.LigneDeCommande;
+import fr.adaming.model.Panier;
 import fr.adaming.model.Product;
 
 @Service("clientServiceBean")
@@ -30,8 +33,8 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	public List<Product> SearchByNameCategorie(int  id_cat) {
-		return clientDao.SearchByNameCategorie(id_cat);
+	public List<Product> SearchByIdCategorie(int  id_cat) {
+		return clientDao.SearchByIdCategorie(id_cat);
 	}
 
 	@Override
@@ -46,9 +49,21 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	public void addClient(Client cl) {
-		clientDao.addClient(cl);
+	public Client addClient(Client cl) {
+		return clientDao.addClient(cl);
 		
 	}
+
+	@Override
+	public Product SearchByIdProduct(int id_prod) {
+		return clientDao.SearchByIdProduct(id_prod);
+		 
+	}
+
+	@Override
+	public Commande passerCommande(Panier panier, Client client) {
+		return clientDao.passerCommande(panier, client);
+	}
+
 
 }

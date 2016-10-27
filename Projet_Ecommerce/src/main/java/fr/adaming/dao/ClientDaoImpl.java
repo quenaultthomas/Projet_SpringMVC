@@ -7,10 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.model.Category;
 import fr.adaming.model.Client;
+import fr.adaming.model.Commande;
+import fr.adaming.model.LigneDeCommande;
+import fr.adaming.model.Panier;
 import fr.adaming.model.Product;
 
 @Repository
@@ -47,10 +49,10 @@ public class ClientDaoImpl implements IClientDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchByNameCategorie(int  id_cat) {
+	public List<Product> SearchByIdCategorie(int  id_cat) {
 		Session s = sf.getCurrentSession();
 		
-		Query req = s.createQuery("SELECT p FROM Product p WHERE p.ID_CATEGORIE=:id");
+		Query req = s.createQuery("SELECT p FROM Product p WHERE p.categorie.id_c=:id");
 		req.setParameter("id", id_cat);
 		return req.list();
 		
@@ -72,12 +74,40 @@ public class ClientDaoImpl implements IClientDao{
 	}
 
 	@Override
-	public void addClient(Client cl) {
+	public Client addClient(Client cl) {
 		Session s = sf.getCurrentSession();
 		
 		s.persist(cl);
+		return cl;
 		
 	}
 
+	@Override
+	public Product SearchByIdProduct(int id_prod) {
+		Session s = sf.getCurrentSession();
+		
+		return (Product) s.get(Product.class, id_prod);
+				
+	}
+
+	@Override
+	public Commande passerCommande(Panier panier, Client client) {
+		
+			Session s = sf.getCurrentSession();
+			
+			Commande commande = new Commande();
+			
+			
+			commande.setClient(client);
+			commande.setLigneCommandes(panier.getArticle());
+			s.persist(commande);
+			
+			
+			return commande;
+	}
+
+	
+
+	
 }
 
