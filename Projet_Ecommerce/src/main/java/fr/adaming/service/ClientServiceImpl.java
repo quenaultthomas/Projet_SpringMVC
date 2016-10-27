@@ -30,8 +30,8 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
-	public List<Product> SearchByNameCategorie(Category categorie) {
-		return clientDao.SearchByNameCategorie(categorie);
+	public List<Product> SearchByNameCategorie(int  id_cat) {
+		return clientDao.SearchByNameCategorie(id_cat);
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class Client implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_client;
+	private int id_client;
 	
 	@Column
 	private String name;
@@ -66,7 +66,7 @@ public class Client implements Serializable {
 	 * @param mail
 	 * @param telephone
 	 */
-	public Client(Long id_client, String name, String adresse, String mail, String telephone) {
+	public Client(int id_client, String name, String adresse, String mail, String telephone) {
 		super();
 		this.id_client = id_client;
 		this.name = name;
@@ -78,14 +78,14 @@ public class Client implements Serializable {
 	/**
 	 * @return the id_client
 	 */
-	public Long getId_client() {
+	public int getId_client() {
 		return id_client;
 	}
 
 	/**
 	 * @param id_client the id_client to set
 	 */
-	public void setId_client(Long id_client) {
+	public void setId_client(int id_client) {
 		this.id_client = id_client;
 	}
 

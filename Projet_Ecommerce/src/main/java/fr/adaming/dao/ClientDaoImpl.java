@@ -6,11 +6,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.model.Category;
 import fr.adaming.model.Client;
 import fr.adaming.model.Product;
 
+@Repository
 public class ClientDaoImpl implements IClientDao{
 	
 	@Autowired
@@ -28,7 +31,7 @@ public class ClientDaoImpl implements IClientDao{
 	public List<Product> SearchByAllProduits() {
 		Session s = sf.getCurrentSession();
 		
-		Query reqAllProduit = s.createQuery("SELECT p FROM Produit p");
+		Query reqAllProduit = s.createQuery("SELECT p FROM Product p");
 		return reqAllProduit.list();
 	}
 
@@ -37,18 +40,18 @@ public class ClientDaoImpl implements IClientDao{
 	public List<Product> SearchByKeyWord(String keyWord) {
 		Session s = sf.getCurrentSession();
 		
-		Query req = s.createQuery("SELECT p FROM Produit p WHERE p.nom like:kw or p.description like:kw");
+		Query req = s.createQuery("SELECT p FROM Product p WHERE p.nom like:kw or p.description like:kw");
 		req.setParameter("kw", "%" + keyWord + "%");
 		return req.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchByNameCategorie(Category categorie) {
+	public List<Product> SearchByNameCategorie(int  id_cat) {
 		Session s = sf.getCurrentSession();
 		
-		Query req = s.createQuery("SELECT c FROM Categorie c WHERE p.categories.nom=:nomCategorie");
-		req.setParameter("nomCategorie", categorie.getNom());
+		Query req = s.createQuery("SELECT p FROM Product p WHERE p.ID_CATEGORIE=:id");
+		req.setParameter("id", id_cat);
 		return req.list();
 		
 	}

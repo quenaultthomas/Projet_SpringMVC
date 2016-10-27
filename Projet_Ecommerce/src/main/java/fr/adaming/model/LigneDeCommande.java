@@ -20,7 +20,7 @@ public class LigneDeCommande implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_LigneDeCommande;
+	private int id_LigneDeCommande;
 	@Column
 	private int quantité;
 	@Column
@@ -56,7 +56,7 @@ public class LigneDeCommande implements Serializable {
 	 * @param quantité
 	 * @param prix
 	 */
-	public LigneDeCommande(Long id_LigneDeCommande, int quantité, int prix) {
+	public LigneDeCommande(int id_LigneDeCommande, int quantité, int prix) {
 		super();
 		this.id_LigneDeCommande = id_LigneDeCommande;
 		this.quantité = quantité;
@@ -67,7 +67,7 @@ public class LigneDeCommande implements Serializable {
 	/**
 	 * @return the id_LigneDeCommande
 	 */
-	public Long getId_LigneDeCommande() {
+	public int getId_LigneDeCommande() {
 		return id_LigneDeCommande;
 	}
 
@@ -75,7 +75,7 @@ public class LigneDeCommande implements Serializable {
 	/**
 	 * @param id_LigneDeCommande the id_LigneDeCommande to set
 	 */
-	public void setId_LigneDeCommande(Long id_LigneDeCommande) {
+	public void setId_LigneDeCommande(int id_LigneDeCommande) {
 		this.id_LigneDeCommande = id_LigneDeCommande;
 	}
 

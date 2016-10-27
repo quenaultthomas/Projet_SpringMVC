@@ -27,7 +27,7 @@ public class Commande implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_commande;
+	private int id_commande;
 	@Column
 	private Date dateDeCommande;
 	
@@ -63,7 +63,7 @@ public class Commande implements Serializable {
 	 * @param id_commande
 	 * @param dateDeCommande
 	 */
-	public Commande(Long id_commande, Date dateDeCommande) {
+	public Commande(int id_commande, Date dateDeCommande) {
 		super();
 		this.id_commande = id_commande;
 		this.dateDeCommande = dateDeCommande;
@@ -72,14 +72,14 @@ public class Commande implements Serializable {
 	/**
 	 * @return the id_commande
 	 */
-	public Long getId_commande() {
+	public int getId_commande() {
 		return id_commande;
 	}
 
 	/**
 	 * @param id_commande the id_commande to set
 	 */
-	public void setId_commande(Long id_commande) {
+	public void setId_commande(int id_commande) {
 		this.id_commande = id_commande;
 	}
 

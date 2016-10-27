@@ -45,8 +45,9 @@ public class CategoryDaoImpl implements ICategoryDao {
 	@Override
 	public List<Category> getAllategories() {
 		Session s = sf.getCurrentSession();
+		return null;
 		
-		Query query = 
+		//Query query = 
 	}
 
 	@Override

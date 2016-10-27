@@ -12,7 +12,7 @@ public List<Product> SearchByAllProduits();
 	
 	public List<Product> SearchByKeyWord(String keyWord);
 	
-	public List<Product> SearchByNameCategorie(Category categorie);
+	public List<Product> SearchByNameCategorie(int  id_cat);
 
 	public List<Product > SearchByProduitSelectionne();
 	
