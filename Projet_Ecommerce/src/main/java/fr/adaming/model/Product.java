@@ -15,14 +15,17 @@ import javax.persistence.Table;
 @Table(name="produits")
 public class Product implements Serializable {
 
+	
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_p;
+	private int id_p;
 	@Column
 	private String nom;
 	@Column
@@ -64,7 +67,7 @@ public class Product implements Serializable {
 	 * @param quantite
 	 * @param prix
 	 */
-	public Product(Long id_p, String nom, String description, int quantite, int prix) {
+	public Product(int id_p, String nom, String description, int quantite, int prix) {
 		super();
 		this.id_p = id_p;
 		this.nom = nom;
@@ -76,14 +79,14 @@ public class Product implements Serializable {
 	/**
 	 * @return the id_p
 	 */
-	public Long getId_p() {
+	public int getId_p() {
 		return id_p;
 	}
 
 	/**
 	 * @param id_p the id_p to set
 	 */
-	public void setId_p(Long id_p) {
+	public void setId_p(int id_p) {
 		this.id_p = id_p;
 	}
 
@@ -151,14 +154,15 @@ public class Product implements Serializable {
 		this.categorie = categorie;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "Product [id_p=" + id_p + ", nom=" + nom + ", description=" + description + ", quantite=" + quantite
-				+ ", prix=" + prix + "]";
+		return "Product [id_p=" + id_p + ", nom=" + nom + ", description="
+				+ description + ", quantite=" + quantite + ", prix=" + prix
+				+ ", categorie=" + categorie + "]";
 	}
+
+	
+	
 
 	
 }

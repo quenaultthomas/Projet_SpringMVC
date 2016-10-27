@@ -16,13 +16,15 @@ import javax.persistence.Table;
 @Table(name="categories")
 public class Category implements Serializable {
 
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id_c;
+	private int id_c;
 	@Column
 	private String nom;
 	@Column
@@ -53,7 +55,7 @@ private Collection<Product> produits = new ArrayList<Product>();
 	 * @param nom
 	 * @param description
 	 */
-	public Category(Long id_c, String nom, String description) {
+	public Category(int id_c, String nom, String description) {
 		super();
 		this.id_c = id_c;
 		this.nom = nom;
@@ -63,14 +65,14 @@ private Collection<Product> produits = new ArrayList<Product>();
 	/**
 	 * @return the id_c
 	 */
-	public Long getId_c() {
+	public int getId_c() {
 		return id_c;
 	}
 
 	/**
 	 * @param id_c the id_c to set
 	 */
-	public void setId_c(Long id_c) {
+	public void setId_c(int id_c) {
 		this.id_c = id_c;
 	}
 
