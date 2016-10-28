@@ -37,7 +37,7 @@ public class Product implements Serializable {
 	@Column
 	private int prix;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_CATEGORIE")
 	private Category categorie;
 
@@ -45,7 +45,7 @@ public class Product implements Serializable {
 	 * 
 	 */
 	public Product() {
-		//Category categorie = new Category();
+		Category categorie = new Category();
 	}
 
 	/**
