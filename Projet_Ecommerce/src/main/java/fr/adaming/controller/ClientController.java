@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,8 @@ import fr.adaming.service.IClientService;
 
 @Controller
 @RequestMapping(value = "/Ecommerce/client")
-@SessionAttributes(value = "MonPanier", types = { Panier.class })
+@SessionAttributes({"MonPanier","client"})
+
 public class ClientController {
 
 	@Autowired
@@ -49,6 +51,19 @@ public class ClientController {
 		panier.setArticle(Article);
 
 		return panier;
+
+	}
+	
+	@ModelAttribute("client")
+	public Client client() {
+		Client client = new Client();
+
+		client.setName(null);
+		client.setMail(null);
+		client.setAdresse(null);
+		client.setTelephone(null);
+
+		return client;
 
 	}
 
@@ -116,11 +131,20 @@ public class ClientController {
 
 		} else {
 			lcomm.setQuantité(lcomm.getQuantité() + qte);
+			//lcomm.setPrix(prod.getPrix()*lcomm.getQuantité());
 			
 		}
 
+		double coutPanier = 0;
 		
+		for (LigneDeCommande ligne : Article.values()) {
+			coutPanier += ligne.getPrix() * ligne.getQuantité();
+		}
 
+		 panier.setCoutTotal(coutPanier);
+		
+		System.out.println("le cout du panier est " +coutPanier);
+		
 		////////////////////////////////////////////////////////////////////////////////////////////////
 
 		List<Product> liste = clientService.SearchByIdCategorie(id_cat);
@@ -135,13 +159,15 @@ public class ClientController {
 
 		List<LigneDeCommande> liste = panier.getLigneCommande();
 
+				
 		model.addAttribute("ListeArticle", liste);
+		model.addAttribute("panier", panier);
 
 		return "panier";
 
 	}
 	
-	@RequestMapping(value="/forumlaire", method=RequestMethod.GET)
+	@RequestMapping(value="/formulaire", method=RequestMethod.GET)
 	public String initForm(ModelMap model){
 		
 		model.addAttribute("client", new Client());
@@ -151,11 +177,17 @@ public class ClientController {
 	
 	//Methode pour soumettre le formulaire
 	@RequestMapping(value="/ajouter", method=RequestMethod.POST)
-	public String ajouterEtudiant(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client, ModelMap model){
+	public String ajouterClient(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client, ModelMap model){
 		
-		Client cl = clientService.addClient(client);
+		Client cl = new Client();
 		
-		Commande commande = clientService.passerCommande(panier, cl);
+		cl.setName(client.getName());
+		cl.setMail(client.getMail());
+		cl.setAdresse(client.getAdresse());
+		cl.setTelephone(client.getTelephone());
+		
+		model.addAttribute("client", cl);
+		
 		
 		
 		model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
@@ -163,6 +195,33 @@ public class ClientController {
 				"Vous allez pouvoir acheter des produits ayant appartenues à notre legende à tous.");
 
 		return "home";
+		
+	}
+		
+		@RequestMapping(value="/ValiderCommande", method=RequestMethod.POST)
+		public String ValiderCommande(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client,
+				ModelMap model){
+					
+			
+			System.out.println("le nom est : " + client.getName());
+			
+			Client cl =new Client();
+			
+			cl.setName(client.getName());
+			cl.setMail(client.getMail());
+			cl.setAdresse(client.getAdresse());
+			cl.setTelephone(client.getTelephone());
+			
+			System.out.println(cl);
+			
+			Commande commande = clientService.passerCommande(panier, cl);
+			
+			
+			model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
+			model.addAttribute("salutation",
+					"Vous allez pouvoir acheter des produits ayant appartenues à notre legende à tous.");
+
+			return "home";
 		
 	}
 	

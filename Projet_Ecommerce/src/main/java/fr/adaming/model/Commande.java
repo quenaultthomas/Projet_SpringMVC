@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Commande implements Serializable {
 	@JoinColumn(name = "id_client")
 	private Client client;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "idCommande")
 	private  Map<Integer, LigneDeCommande>  ligneCommandes;
 	

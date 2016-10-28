@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import fr.adaming.model.Category;
 import fr.adaming.model.Client;
 import fr.adaming.model.Commande;
-import fr.adaming.model.LigneDeCommande;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Product;
 
@@ -54,6 +53,7 @@ public class ClientDaoImpl implements IClientDao{
 		
 		Query req = s.createQuery("SELECT p FROM Product p WHERE p.categorie.id_c=:id");
 		req.setParameter("id", id_cat);
+		
 		return req.list();
 		
 	}
@@ -94,6 +94,8 @@ public class ClientDaoImpl implements IClientDao{
 	public Commande passerCommande(Panier panier, Client client) {
 		
 			Session s = sf.getCurrentSession();
+			
+			s.save(client);
 			
 			Commande commande = new Commande();
 			

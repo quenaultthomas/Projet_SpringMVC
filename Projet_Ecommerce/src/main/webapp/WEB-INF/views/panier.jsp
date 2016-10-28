@@ -24,15 +24,15 @@
 	</div>
 
 	<div align="center">
-		<form:form method="POST" action="forumlaire" modelAttribute="employe">
+		<form:form method="POST" action="ValiderCommande" modelAttribute="employe">
 			<table>
 
 				<tr bgcolor="grey" style="">
 
 					<th>Nom</th>
-					<th>Prix</th>
+					<th>Prix unitaire</th>
 					<th>Quantite</th>
-
+					<th>Prix total</th>
 
 				</tr>
 				<c:forEach var="ligne" items="${ListeArticle}">
@@ -40,13 +40,18 @@
 						<td>${ligne.produit.nom}</td>
 						<td>${ligne.prix}</td>
 						<td>${ligne.quantité}</td>
+						<td>${ligne.quantité*ligne.prix}</td>
 					</tr>
 				</c:forEach>
+				
 				<tr>
-					<td><input type="submit" value="Valider la commande" /></td>
+					<td><input type="submit" value="Valider la commander" /></td>
 				</tr>
+								
 			</table>
 		</form:form>
+		
+		<h1>Le cout du panier est ${panier.coutTotal}</h1>
 	</div>
 	<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>
 </body>

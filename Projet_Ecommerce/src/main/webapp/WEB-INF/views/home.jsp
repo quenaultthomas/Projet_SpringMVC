@@ -21,6 +21,11 @@
 			<td align="left">Cliquer Ici</td>
 			<td align="right"><a href="listeCat">Liste des Categories</a></td>
 		</tr>
+		<tr style="color:blue; font-style: italic; font-size: 14pt;">
+			<td align="left">Cliquer Ici</td>
+			<td align="right"><a
+			href="formulaire">Enregistrer vous !!</a></td>
+		</tr>
 	</table>
 	<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>
 </body>
