@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!--  -->
+
 <form:form method="POST" action="ajouter" modelAttribute="client">
 		<table>
 			<tr>
