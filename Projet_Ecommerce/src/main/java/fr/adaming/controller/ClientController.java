@@ -232,6 +232,47 @@ public class ClientController {
 			return "home";
 		
 	}
+		
+		@RequestMapping(value="/deleteArticle/{id_p}", method=RequestMethod.GET)
+		public String deleteArticle(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client,@PathVariable("id_p") int id_p, ModelMap model){
+				
+			List<LigneDeCommande> liste = panier.getLigneCommande();
+			
+			Product prod = clientService.SearchByIdProduct(id_p);
+			
+			LigneDeCommande lcomm = Article.get(prod.getId_p());
+			
+			
+			
+			if(lcomm.getQuantité()>0){
+				
+				lcomm.setQuantité(lcomm.getQuantité()-1);
+				
+			}else{
+				
+				liste.remove(lcomm);
+				
+			}
+			
+			
+			
+			double coutPanier = 0;
+			
+			for (LigneDeCommande ligne : Article.values()) {
+				coutPanier += ligne.getPrix() * ligne.getQuantité();
+			}
+
+			 panier.setCoutTotal(coutPanier);
+			
+			model.addAttribute("ListeArticle", liste);
+			model.addAttribute("panier", panier);
+			
+			model.addAttribute("entete", "Panier de monsieur : " + client.getName());
+			model.addAttribute("salutation",
+					"Pensez à en acheter toujours plus.");
+			
+			return "panier";
+		}
 	
 	
 }

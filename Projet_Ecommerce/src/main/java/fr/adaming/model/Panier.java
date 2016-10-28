@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 
 
 public class Panier implements Serializable {
@@ -16,6 +19,7 @@ public class Panier implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Map<Integer, LigneDeCommande> Article = new HashMap<Integer, LigneDeCommande>();
 	private List<LigneDeCommande> LigneCommande = new ArrayList<LigneDeCommande>();
+	
 	
 	double coutTotal = 0;
 	
@@ -71,8 +75,7 @@ public class Panier implements Serializable {
 	public void setArticle(Map<Integer, LigneDeCommande> article) {
 		Article = article;
 	}
-	
-	
+
 	
 	}
 

@@ -6,18 +6,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<link href="<c:url value="/ressources/styles/bootstrap.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/ressources/javascript/bootstrap.js" />"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Accueil Client</title>
 </head>
 <body>
 
-<div align="right">
+<a class="btn btn-default" href="retourAccueil" role="button">Accueil</a>
+<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat" role="button">Liste des Catégories</a>
+<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier" role="button">Panier</a>
 
-		<a href="retourAccueil">Accueil</a>
-		<a href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat">Liste des Catégories</a>
-		<a href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier">Panier</a>
-
-	</div>
 
 	<h1
 		style="background-color: lightgreen; color: darkgreen; text-align: center">${entete}</h1>
@@ -31,6 +32,5 @@
 			<td align="right"><a href="listeCat">Liste des Categories</a></td>
 		</tr>
 	</table>
-	<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>
 </body>
 </html>

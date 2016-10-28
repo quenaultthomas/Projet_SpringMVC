@@ -13,6 +13,8 @@
 <!-- Activation de la detection auto des annotations  -->
 <mvc:annotation-driven/>
 
+<mvc:resources mapping="/ressources/**" location="/ressources/"/>
+
 <!-- Declaration du bean ViewResolver -->
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 <property name="prefix" value="/WEB-INF/views/"/>

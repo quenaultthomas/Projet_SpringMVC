@@ -7,18 +7,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="<c:url value="/ressources/styles/bootstrap.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/ressources/javascript/bootstrap.js" />"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Panier</title>
 </head>
 <body>
 
-	<div align="right">
-		<a href="retourAccueil">Accueil</a>
-		<a href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat">Liste des Catégories</a>
-		<a href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier">Panier</a>
+<a class="btn btn-default" href="retourAccueil" role="button">Accueil</a>
+<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat" role="button">Liste des Catégories</a>
 
-	</div>
-	
+
 	<h1
 		style="background-color: lightgreen; color: darkgreen; text-align: center">${entete}</h1>
 
@@ -41,6 +42,7 @@
 					<th>Prix unitaire</th>
 					<th>Quantite</th>
 					<th>Prix total</th>
+					<th>Action</th>
 
 				</tr>
 				<c:forEach var="ligne" items="${ListeArticle}">
@@ -49,6 +51,7 @@
 						<td>${ligne.prix}</td>
 						<td>${ligne.quantité}</td>
 						<td>${ligne.quantité*ligne.prix}</td>
+						<td><a href="${pageContext.request.contextPath}/Ecommerce/client/deleteArticle/${ligne.produit.id_p}">Supprimer</a></td>
 					</tr>
 				</c:forEach>
 				
@@ -59,8 +62,7 @@
 			</table>
 		</form:form>
 		
-		<h1>Le cout du panier est ${panier.coutTotal}</h1>
+		<h1>Le cout du panier est ${panier.coutTotal} euros</h1>
 	</div>
-	<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>
 </body>
 </html>

@@ -6,16 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="<c:url value="/ressources/styles/bootstrap.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/ressources/javascript/bootstrap.js" />"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste des Produits</title>
 </head>
 <body>
 
-	<div align="right">
-		<a href="retourAccueil">Accueil</a>
-		<a href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat">Liste des Catégories</a>
-		<a href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier">Panier</a>
-	</div>
+<a class="btn btn-default" href="retourAccueil" role="button">Accueil</a>
+<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat" role="button">Liste des Catégories</a>
+<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier" role="button">Panier</a>
+
 
 	<div align="center">
 		<h1 style="background-color: lightgreen; color: dark">Liste des
@@ -23,13 +26,14 @@
 	</div>
 
 	<div align="center">
-		<table>
+		<table class="table table-striped">
 			
 			<tr bgcolor="grey" style="">
 				<th>ID</th>
 				<th>Nom</th>
 				<th>Description</th>
 				<th>Prix</th>
+				<th>Action</th>
 				
 			</tr>
 			<c:forEach var="prod" items="${listeProd}">
@@ -44,6 +48,5 @@
 			</c:forEach>
 		</table>
 	</div>
-<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>
 </body>
 </html>

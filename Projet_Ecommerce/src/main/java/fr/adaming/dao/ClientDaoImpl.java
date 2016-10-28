@@ -108,8 +108,6 @@ public class ClientDaoImpl implements IClientDao{
 			return commande;
 	}
 
-	
-
-	
+		
 }
 
