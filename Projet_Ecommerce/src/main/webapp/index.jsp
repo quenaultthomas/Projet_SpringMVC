@@ -27,7 +27,7 @@ Veuillez sélectionner votre situation
 	<table align="center" cellspacing="10">
 		<tr style="color:blue; font-style: italic; font-size: 14pt;">
 			<td align="left">Cliquer Ici</td>
-			<td align="right"><a href="Ecommerce/client/index">Coté Client</a></td>
+			<td align="right"><a href="Ecommerce/client/formulaire">Coté Client</a></td>
 		</tr>
 		<tr style="color:blue; font-style: italic; font-size: 14pt;">
 			<td align="left">Cliquer Ici</td>

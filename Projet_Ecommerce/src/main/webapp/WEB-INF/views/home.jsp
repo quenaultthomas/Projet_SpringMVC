@@ -10,6 +10,15 @@
 <title>Accueil Client</title>
 </head>
 <body>
+
+<div align="right">
+
+		<a href="retourAccueil">Accueil</a>
+		<a href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat">Liste des Catégories</a>
+		<a href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier">Panier</a>
+
+	</div>
+
 	<h1
 		style="background-color: lightgreen; color: darkgreen; text-align: center">${entete}</h1>
 
@@ -20,11 +29,6 @@
 		<tr style="color:blue; font-style: italic; font-size: 14pt;">
 			<td align="left">Cliquer Ici</td>
 			<td align="right"><a href="listeCat">Liste des Categories</a></td>
-		</tr>
-		<tr style="color:blue; font-style: italic; font-size: 14pt;">
-			<td align="left">Cliquer Ici</td>
-			<td align="right"><a
-			href="formulaire">Enregistrer vous !!</a></td>
 		</tr>
 	</table>
 	<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>

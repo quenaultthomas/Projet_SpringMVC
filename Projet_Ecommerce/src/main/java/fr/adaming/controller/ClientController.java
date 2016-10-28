@@ -67,16 +67,7 @@ public class ClientController {
 
 	}
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String welcomeEmploye(ModelMap model) {
-
-		model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
-		model.addAttribute("salutation",
-				"Vous allez pouvoir acheter des produits ayant appartenues à notre legende à tous.");
-
-		return "home";
-	}
-
+	
 	@RequestMapping(value = "/listeCat", method = RequestMethod.GET)
 	public String getAllCategories(ModelMap model) {
 		List<Category> liste = clientService.GetAllCategorie();
@@ -98,12 +89,21 @@ public class ClientController {
 		model.addAttribute("listeCat", liste);
 		return "listeCat";
 	}
+	
+	@RequestMapping(value = "/retourListeProd/{id_cat}", method = RequestMethod.GET)
+	public String RetourListeProd(ModelMap model, @PathVariable("id_cat") int id_cat) {
+
+		List<Product> liste = clientService.SearchByIdCategorie(id_cat);
+		model.addAttribute("listeProd", liste);
+		return "listeCat";
+	}
 
 	@RequestMapping(value = "/retourAccueil", method = RequestMethod.GET)
-	public String RetourAccueil(ModelMap model) {
-		model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
+	public String RetourAccueil(@ModelAttribute("client") Client client,ModelMap model) {
+		
+		model.addAttribute("entete", "Bienvenue monsieur " + client.getName());
 		model.addAttribute("salutation",
-				"Vous allez pouvoir acheter des produits ayant appartenues à notre legende à tous.");
+				"Nous vous souhaitons une bonne journée.");
 		return "home";
 	}
 
@@ -131,7 +131,7 @@ public class ClientController {
 
 		} else {
 			lcomm.setQuantité(lcomm.getQuantité() + qte);
-			//lcomm.setPrix(prod.getPrix()*lcomm.getQuantité());
+			
 			
 		}
 
@@ -155,13 +155,17 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/voirPanier", method = RequestMethod.GET)
-	public String VoirPanier(@ModelAttribute("MonPanier") Panier panier, ModelMap model) {
+	public String VoirPanier(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client, ModelMap model) {
 
 		List<LigneDeCommande> liste = panier.getLigneCommande();
 
 				
 		model.addAttribute("ListeArticle", liste);
 		model.addAttribute("panier", panier);
+		
+		model.addAttribute("entete", "Panier de monsieur : " + client.getName());
+		model.addAttribute("salutation",
+				"Pnsez à en acheter toujours plus.");
 
 		return "panier";
 
@@ -171,6 +175,10 @@ public class ClientController {
 	public String initForm(ModelMap model){
 		
 		model.addAttribute("client", new Client());
+		
+		model.addAttribute("entete", "Bienvenue, Merci de renseigner les informations suivantes");
+		model.addAttribute("salutation",
+				"Ces informations sont nécessaire au bon fonctionnement de notre site. Elles ne seront ni dévoilées ni divulguées à des fins commerciales");
 		
 		return "ajouterClient";
 	}
@@ -190,9 +198,9 @@ public class ClientController {
 		
 		
 		
-		model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
+		model.addAttribute("entete", "Bienvenue monsieur " + client.getName());
 		model.addAttribute("salutation",
-				"Vous allez pouvoir acheter des produits ayant appartenues à notre legende à tous.");
+				"Nous vous souhaitons une bonne journée.");
 
 		return "home";
 		
