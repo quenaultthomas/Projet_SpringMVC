@@ -32,7 +32,7 @@ public class Category implements Serializable {
 	@Column
 	private String description;
 	
-	@OneToMany(mappedBy = "categorie", cascade=CascadeType.REMOVE, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "categorie", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private Collection<Product> produits = new ArrayList<Product>();
 
 	/**
