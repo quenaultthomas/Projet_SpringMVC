@@ -18,24 +18,32 @@
 		<h1 style="background-color: lightgreen; color: dark">Liste des
 			Produits</h1>
 	</div>
+	
+	</br>
+	<td><a href="formulaireProd">Ajouter</a></td>
 
 	<div align="center">
 		<table>
 			
 			<tr bgcolor="grey" style="">
+				
 				<th>ID</th>
 				<th>Nom</th>
 				<th>Description</th>
 				<th>Prix</th>
+				<th>Categorie</th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
 				
 			</tr>
 			<c:forEach var="prod" items="${listeProdG}">
 			<tr bgcolor="lightyellow">
-				<td><a href="ajouterProd">Ajouter</a></td>
+				
 				<td>${prod.id_p }</td>
 				<td>${prod.nom }</td>
 				<td>${prod.description }</td>
-				<td>${prod.prix }</td>		
+				<td>${prod.prix }</td>
+				<td>${prod.categorie.id_c }</td>		
 				<td><a href="modifierProd?IdProd=${prod.id_p}">modifier</a></td>
 				<td><a href="supprimerProd/${prod.id_p}">supprimer</a></td>		
 			</tr>

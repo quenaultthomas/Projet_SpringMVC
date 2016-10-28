@@ -18,26 +18,29 @@
 		<h1 style="background-color: lightgreen; color: dark">Liste des
 			Categories</h1>
 	</div>
+	</br>
+	<td><a href="formulaireCat">Ajouter</a></td>
 
 	<div align="center">
 		<table>
 			
 			<tr bgcolor="grey" style="">
+				
 				<th>ID</th>
 				<th>Nom</th>
 				<th>Description</th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
 				
 			</tr>
 			<c:forEach var="cat" items="${listeCatG}">
 			<tr bgcolor="lightyellow">
-				<td><a href="ajouterCat">Ajouter</a></td>
+				
 				<td>${cat.id_c }</td>
 				<td>${cat.nom }</td>
 				<td>${cat.description }</td>
 				<td><a href="modifierCat?IdCat=${cat.id_c}">modifier</a></td>
-				<td><a href="supprimerCat/${cat.id_c}">supprimer</a></td>
-
-				
+				<td><a href="supprimerCat/${cat.id_c}">supprimer</a></td>	
 			</tr>
 			</c:forEach>
 		</table>
