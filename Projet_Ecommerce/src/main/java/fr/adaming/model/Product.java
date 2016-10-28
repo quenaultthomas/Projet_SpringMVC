@@ -2,8 +2,10 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +37,7 @@ public class Product implements Serializable {
 	@Column
 	private int prix;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	@JoinColumn(name = "ID_CATEGORIE")
 	private Category categorie;
 
@@ -43,7 +45,7 @@ public class Product implements Serializable {
 	 * 
 	 */
 	public Product() {
-		super();
+		//Category categorie = new Category();
 	}
 
 	/**

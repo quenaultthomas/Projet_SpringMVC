@@ -8,6 +8,11 @@ import java.util.List;
 
 
 
+
+
+
+
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,7 +28,16 @@ public class GestionnaireDaoImpl implements IGestionnaireDao {
 	
 	@Autowired
 	private SessionFactory sf; 
+
 	
+	
+	/**
+	 * @param sf the sf to set
+	 */
+	public void setSf(SessionFactory sf) {
+		this.sf = sf;
+	}
+
 
 	@Override
 	public void addCategoryDao(Category c) {
@@ -48,33 +62,99 @@ public class GestionnaireDaoImpl implements IGestionnaireDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Category> getAllCategories() {
+	public List<Category> getAllCategoriesDao() {
 		Session s = sf.getCurrentSession();
 		
-		Query query = s.createQuery("SELECT c FROM Category c");
+		Query query = s.createQuery("FROM Category");
 		return query.list();
 	}
 
 	@Override
-	public Category getCategoryById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Product> SearchByNameCategorie(Category categorie) {
+	public Category getCategoryByIdDao(int id) {
 		Session s = sf.getCurrentSession();
 		
-		Query req = s.createQuery("SELECT c FROM Category c WHERE p.categorie.nom=:nomCategorie");
-		req.setParameter("nomCategorie", categorie.getNom());
-		return req.list();
+		Query query = s.createQuery("SELECT c FROM Category c WHERE c.id=:qId");
+		query.setParameter("qId", id);
+		Category cat = (Category) query.uniqueResult();
+		
+		return cat;
+	}
+	
+	
+	
+
+	
+	
+	
+	/** Méthodes concernants les produits*/
+	
+	
+	
+	@Override
+	public void addProductDao(Product p) {
+		Session s = sf.getCurrentSession();
+		
+		s.save(p);
 		
 	}
 
 	@Override
-	public List<Product> SearchByProduitSelectionneDao() {
-		// TODO Auto-generated method stub
-		return null;
+	public void delProduitDao(int id) {
+		Session s = sf.getCurrentSession();
+		
+		Product p = (Product) s.get(Product.class, id);
+		s.delete(p);
+		
+	}
+
+	@Override
+	public void upProduitDao(Product p) {
+		Session s = sf.getCurrentSession();
+		
+		s.saveOrUpdate(p);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> getAllProductsDao() {
+		Session s = sf.getCurrentSession();
+		
+		Query query = s.createQuery("FROM Product");
+		return query.list();
+		
+	}
+
+	@Override
+	public Product getProductByIdDao(int id) {
+		Session s = sf.getCurrentSession();
+		
+		Product p = (Product) s.get(Product.class, id);
+		return p;
+	}
+
+	
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchByKeyWordsProductDao(String keyWord) {
+		Session s = sf.getCurrentSession();
+		
+		Query req = s.createQuery("SELECT p FROM Product p WHERE p.nom like:kw or p.description like:kw");
+		req.setParameter("kw", "%" + keyWord + "%");
+		return req.list();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchByIdCategorieDao(int id_c) {
+		Session s = sf.getCurrentSession();
+		
+		Query query = s.createQuery("SELECT p FROM Product p WHERE p.ID_CATEGORIE=:qIdC");
+		query.setParameter("qIdC", id_c);
+		return query.list();
 	}
 
 }
