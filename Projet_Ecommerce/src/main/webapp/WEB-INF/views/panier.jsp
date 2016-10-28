@@ -13,11 +13,19 @@
 <body>
 
 	<div align="right">
-		<a
-			href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat">Liste
-			des Catégories</a>
+		<a href="retourAccueil">Accueil</a>
+		<a href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat">Liste des Catégories</a>
+		<a href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier">Panier</a>
 
 	</div>
+	
+	<h1
+		style="background-color: lightgreen; color: darkgreen; text-align: center">${entete}</h1>
+
+	<h2
+		style="background-color: lightblue; color: darkblue; font-size: 16pt; text-align: center;">${salutation}</h2>
+		
+		
 
 	<div align="center">
 		<h1 style="background-color: lightgreen; color: dark">Panier</h1>

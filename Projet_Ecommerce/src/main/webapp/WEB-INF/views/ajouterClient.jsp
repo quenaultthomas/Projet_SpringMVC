@@ -11,7 +11,11 @@
 </head>
 <body>
 
-<!--  -->
+<h1
+		style="background-color: lightgreen; color: darkgreen; text-align: center">${entete}</h1>
+
+	<h2
+		style="background-color: lightblue; color: darkblue; font-size: 16pt; text-align: center;">${salutation}</h2>
 
 <form:form method="POST" action="ajouter" modelAttribute="client">
 		<table>
@@ -32,7 +36,7 @@
 				<td><form:input path="telephone" /></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Ajouter client et Valider la commande" /></td>
+				<td><input type="submit" value="Valider" /></td>
 			</tr>
 		</table>
 	</form:form>

@@ -13,6 +13,7 @@
 
 	<div align="right">
 		<a href="retourAccueil">Accueil</a>
+		<a href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier">Panier</a>
 	</div>
 
 	<div align="center">
