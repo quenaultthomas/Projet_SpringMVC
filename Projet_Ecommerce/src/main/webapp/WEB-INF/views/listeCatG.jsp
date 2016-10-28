@@ -39,7 +39,7 @@
 				<td>${cat.id_c }</td>
 				<td>${cat.nom }</td>
 				<td>${cat.description }</td>
-				<td><a href="modifierCat?IdCat=${cat.id_c}">modifier</a></td>
+				<td><a href="modifCat?IdCat=${cat.id_c}">modifier</a></td>
 				<td><a href="supprimerCat/${cat.id_c}">supprimer</a></td>	
 			</tr>
 			</c:forEach>

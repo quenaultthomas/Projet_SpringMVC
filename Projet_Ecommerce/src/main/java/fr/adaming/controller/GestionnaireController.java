@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.adaming.model.Category;
 import fr.adaming.model.Product;
@@ -73,7 +74,7 @@ public class GestionnaireController {
 	@RequestMapping(value="/formulaireCat", method=RequestMethod.GET)
 	public String formulaireCat(ModelMap gestio){
 		
-		gestio.addAttribute("gestionnaire", new GestionnaireController());
+		gestio.addAttribute("categorie", new Category());
 		
 		return "ajouterCat";
 		
@@ -97,10 +98,33 @@ public class GestionnaireController {
 		return "listeCatG";
 	}
 	
+	
+	@RequestMapping(value="/modifCat", method=RequestMethod.GET)
+	public String formulaireModifCat(int IdCat, ModelMap gestio){
+		
+		Category cat = this.gestioService.getCategoryByIdService(IdCat);
+		gestio.addAttribute("categorie",cat);
+		
+		return "ajouterCat";
+	}
+	
+	@RequestMapping(value="/supprimerCat/{catId}", method=RequestMethod.GET)
+	public String supprimerCat(@PathVariable ("catId") int IdCat, ModelMap gestio){
+		
+		Category cat = this.gestioService.getCategoryByIdService(IdCat);
+		this.gestioService.delCategoryService(IdCat);
+		
+		List<Category> liste=gestioService.getAllCategoriesService();
+		gestio.addAttribute("listeCatG", liste);
+		
+		return "listeCatG";
+		
+	}
+	
 	@RequestMapping(value="/formulaireProd", method=RequestMethod.GET)
 	public String formulaireProd(ModelMap gestio){
 		
-		gestio.addAttribute("gestionnaire", new GestionnaireController());
+		gestio.addAttribute("produit", new Product());
 		
 		return "ajouterProd";
 		
