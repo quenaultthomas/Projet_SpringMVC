@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,6 +42,35 @@
 			</tr>
 		</table>
 	</form:form>
+	
+	<div align="center">
+		<h1 style="background-color: lightgreen; color: dark">Liste des
+			Categories</h1>
+	</div>
+	</br>
+	<td><a href="formulaireCat">Ajouter</a></td>
+
+	<div align="center">
+		<table>
+			
+			<tr bgcolor="grey" style="">
+				
+				<th>ID</th>
+				<th>Nom</th>
+				<th>Description</th>
+				
+				
+			</tr>
+			<c:forEach var="cat" items="${listeCatG}">
+			<tr bgcolor="lightyellow">
+				
+				<td>${cat.id_c }</td>
+				<td>${cat.nom }</td>
+				<td>${cat.description }</td>	
+			</tr>
+			</c:forEach>
+		</table>
+	</div>
 
 </body>
 </html>

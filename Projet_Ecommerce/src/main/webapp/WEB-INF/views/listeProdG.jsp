@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,11 @@
 <body>
 
 	<div align="right">
-		<a href="${pageContext.request.contextPath}/Ecommerce/gestio/retourListeCatG">Liste des Catégories</a>
+		<a href="${pageContext.request.contextPath}/Ecommerce/gestio/listeCatG">Liste des Catégories</a>
+	</div>
+	
+	<div align="right">
+		<a href="retourAccueilG">Accueil</a>
 	</div>
 
 	<div align="center">
@@ -21,6 +26,8 @@
 	
 	</br>
 	<td><a href="formulaireProd">Ajouter</a></td>
+	</br>
+	<td><a href="rechercherFormProd">Rechercher</a></td>	
 
 	<div align="center">
 		<table>
@@ -32,6 +39,7 @@
 				<th>Description</th>
 				<th>Prix</th>
 				<th>Categorie</th>
+				<th>Quantité</th>
 				<th>Modifier</th>
 				<th>Supprimer</th>
 				
@@ -43,9 +51,10 @@
 				<td>${prod.nom }</td>
 				<td>${prod.description }</td>
 				<td>${prod.prix }</td>
+				<td>${prod.quantite }</td>
 				<td>${prod.categorie.id_c }</td>		
 				<td><a href="modifierProd?IdProd=${prod.id_p}">modifier</a></td>
-				<td><a href="supprimerProd/${prod.id_p}">supprimer</a></td>		
+				<td><a href="supprimerProd/${prod.id_p}">supprimer</a></td>	
 			</tr>
 			</c:forEach>
 		</table>

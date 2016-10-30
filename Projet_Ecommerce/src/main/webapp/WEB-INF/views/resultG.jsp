@@ -1,29 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Liste des Catégories</title>
+<title>Resultat de votre recherche</title>
 </head>
 <body>
 
 	<div align="right">
+		<a href="${pageContext.request.contextPath}/Ecommerce/gestio/listeCatG">Liste des Catégories</a>
+	</div>
+	
+	<div align="right">
 		<a href="${pageContext.request.contextPath}/Ecommerce/gestio/listeProdG">Liste des Produits</a>
 	</div>
-
+	
 	<div align="right">
 		<a href="retourAccueilG">Accueil</a>
 	</div>
 
 	<div align="center">
 		<h1 style="background-color: lightgreen; color: dark">Liste des
-			Categories</h1>
+			Produits correspondant à votre recherche</h1>
 	</div>
+	
 	</br>
-	<td><a href="formulaireCat">Ajouter</a></td>
+	
 
 	<div align="center">
 		<table>
@@ -33,18 +39,22 @@
 				<th>ID</th>
 				<th>Nom</th>
 				<th>Description</th>
-				<th>Modifier</th>
-				<th>Supprimer</th>
+				<th>Prix</th>
+				<th>Quantité</th>
+				<th>Categorie</th>
+				
 				
 			</tr>
-			<c:forEach var="cat" items="${listeCatG}">
+			<c:forEach var="prod" items="${resultG}">
 			<tr bgcolor="lightyellow">
 				
-				<td>${cat.id_c }</td>
-				<td>${cat.nom }</td>
-				<td>${cat.description }</td>
-				<td><a href="modifCat?IdCat=${cat.id_c}">modifier</a></td>
-				<td><a href="supprimerCat/${cat.id_c}">supprimer</a></td>	
+				<td>${prod.id_p }</td>
+				<td>${prod.nom }</td>
+				<td>${prod.description }</td>
+				<td>${prod.prix }</td>
+				<td>${prod.quantite }</td>
+				<td>${prod.categorie.id_c }</td>		
+					
 			</tr>
 			</c:forEach>
 		</table>

@@ -4,14 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import fr.adaming.model.Category;
 import fr.adaming.model.Product;
 import fr.adaming.service.IGestionnaireService;
@@ -102,7 +99,7 @@ public class GestionnaireController {
 	@RequestMapping(value="/modifCat", method=RequestMethod.GET)
 	public String formulaireModifCat(int IdCat, ModelMap gestio){
 		
-		Category cat = this.gestioService.getCategoryByIdService(IdCat);
+		Category cat = gestioService.getCategoryByIdService(IdCat);
 		gestio.addAttribute("categorie",cat);
 		
 		return "ajouterCat";
@@ -111,7 +108,7 @@ public class GestionnaireController {
 	@RequestMapping(value="/supprimerCat/{catId}", method=RequestMethod.GET)
 	public String supprimerCat(@PathVariable ("catId") int IdCat, ModelMap gestio){
 		
-		Category cat = this.gestioService.getCategoryByIdService(IdCat);
+		Category cat = gestioService.getCategoryByIdService(IdCat);
 		this.gestioService.delCategoryService(IdCat);
 		
 		List<Category> liste=gestioService.getAllCategoriesService();
@@ -148,6 +145,54 @@ public class GestionnaireController {
 		return "listeProdG";
 	}
 		
+	
+	@RequestMapping(value="/modifProd", method=RequestMethod.GET)
+	public String formulaireModifProd(int IdProd, ModelMap gestio){
+		
+		Product prod = gestioService.getProductByIdService(IdProd);
+		gestio.addAttribute("produit",prod);
+		
+		return "ajouterProd";
+	}
+	
+	@RequestMapping(value="/supprimerProd/{prodId}", method=RequestMethod.GET)
+	public String supprimerProd(@PathVariable ("prodId") int IdProd, ModelMap gestio){
+		
+		Product prod = gestioService.getProductByIdService(IdProd);
+		this.gestioService.delProduitService(IdProd);
+		
+		List<Product> liste=gestioService.getAllProductsService();
+		gestio.addAttribute("listeProdG", liste);
+		
+		return "listeProdG";
+		
+	}
+	
+	
+	@RequestMapping(value="/rechercherFormProd", method=RequestMethod.GET)
+	public String rechercherFormProd(ModelMap gestio){
+		
+	
+		gestio.addAttribute("produit", new Product());
+		
+		
+		return "rechercherProdG";
+		
+	}
+	
+	
+	@RequestMapping(value="/rechercherProd", method=RequestMethod.POST)
+	public String rechercherProd(@ModelAttribute("produit") Product prod, ModelMap gestio){
+		
+	
+		
+		List<Product> liste=gestioService.SearchByKeyWordsProductService(prod.getKeyWord());
+		gestio.addAttribute("resultG", liste);
+		
+		return "resultG";
+		
+	}
+	
 	
 	
 	

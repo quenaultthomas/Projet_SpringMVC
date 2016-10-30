@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="produits")
@@ -36,10 +37,13 @@ public class Product implements Serializable {
 	private int quantite;
 	@Column
 	private int prix;
-	
+		
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "ID_CATEGORIE")
 	private Category categorie;
+	
+	@Transient
+	private String keyWord;
 
 	/**
 	 * 
@@ -154,6 +158,22 @@ public class Product implements Serializable {
 
 	public void setCategorie(Category categorie) {
 		this.categorie = categorie;
+	}
+	
+	
+
+	/**
+	 * @return the keyWord
+	 */
+	public String getKeyWord() {
+		return keyWord;
+	}
+
+	/**
+	 * @param keyWord the keyWord to set
+	 */
+	public void setKeyWord(String keyWord) {
+		this.keyWord = keyWord;
 	}
 
 	@Override
