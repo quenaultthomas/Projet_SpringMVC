@@ -108,6 +108,19 @@ public class ClientDaoImpl implements IClientDao{
 			return commande;
 	}
 
+	
+	@Override
+	public Commande SearchCommandByIdClient(int id_client) {
+        Session s = sf.getCurrentSession();
+		
+		Query req = s.createQuery("SELECT c FROM Commande c WHERE c.client.id_client=:id");
+		req.setParameter("id", id_client);
+		
+		Commande com = (Commande) req.uniqueResult();
+		
+		return com;
+	}
+
 		
 }
 

@@ -65,5 +65,11 @@ public class ClientServiceImpl implements IClientService{
 		return clientDao.passerCommande(panier, client);
 	}
 
+	@Override
+	public Commande SearchCommandByIdClient(int id_client) {
+		return clientDao.SearchCommandByIdClient(id_client);
+	}
+
+	
 
 }

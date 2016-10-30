@@ -26,6 +26,8 @@ public List<Product> SearchByAllProduits();
 	public Product SearchByIdProduct(int id_prod);
 	
 	public Commande passerCommande(Panier panier, Client client);
+	
+	public Commande SearchCommandByIdClient(int id_client);
 		
 	
 

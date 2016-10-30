@@ -25,7 +25,7 @@ import fr.adaming.service.IClientService;
 
 @Controller
 @RequestMapping(value = "/Ecommerce/client")
-@SessionAttributes({"MonPanier","client"})
+@SessionAttributes({"MonPanier","client","MaCommande"})
 
 public class ClientController {
 
@@ -67,6 +67,16 @@ public class ClientController {
 
 	}
 
+	@ModelAttribute("MaCommande")
+	public Commande commande() {
+		Commande com =new Commande();
+
+		com.setDateDeCommande(null);
+		com.setClient(null);
+
+		return com;
+
+	}
 	
 	@RequestMapping(value = "/listeCat", method = RequestMethod.GET)
 	public String getAllCategories(ModelMap model) {
@@ -274,5 +284,14 @@ public class ClientController {
 			return "panier";
 		}
 	
+		@RequestMapping(value="/afficherCommande/{id_client}", method=RequestMethod.GET)
+		public String affficherCommande(@ModelAttribute("MaCommande") Commande commande,@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client,@PathVariable("id_client") int id_client, ModelMap model){
+			
+			
+			
+			
+			return "affichageCommande";
+			
+		}
 	
 }
