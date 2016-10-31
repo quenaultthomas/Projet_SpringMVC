@@ -7,8 +7,6 @@
 <html>
 <head>
 
-<link href="<c:url value="/ressources/styles/bootstrap.min.css" />" rel="stylesheet">
-    <script src="<c:url value="/ressources/javascript/bootstrap.js" />"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ajouter Client</title>

@@ -18,6 +18,7 @@
 <a class="btn btn-default" href="retourAccueil" role="button">Accueil</a>
 <a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat" role="button">Liste des Catégories</a>
 <a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier" role="button">Panier</a>
+<a class="btn btn-default" href="afficherCommande" role="button">Votre Commande</a>
 
 
 	<div align="center">
@@ -26,7 +27,7 @@
 	</div>
 
 	<div align="center">
-		<table class="table table-striped">
+		<table class="table table-striped" style="width:50%;">
 			
 			<tr bgcolor="grey" style="">
 				<th>ID</th>
@@ -47,6 +48,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier" role="button">Panier</a>
 	</div>
 </body>
 </html>

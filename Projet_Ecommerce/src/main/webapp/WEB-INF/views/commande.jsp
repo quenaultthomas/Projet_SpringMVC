@@ -11,41 +11,62 @@
     <script src="<c:url value="/ressources/javascript/bootstrap.js" />"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Liste des Produits</title>
+<title>Récapitulatif de votre Commande</title>
 </head>
 <body>
 
 <a class="btn btn-default" href="retourAccueil" role="button">Accueil</a>
 <a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat" role="button">Liste des Catégories</a>
 <a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier" role="button">Panier</a>
+<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/afficherCommande" role="button">Votre Commande</a>
 
 
 	<div align="center">
-		<h1 style="background-color: lightgreen; color: dark">Liste des
-			Produits</h1>
+		<h1 style="background-color: lightgreen; color: dark">Votre Commande en détail</h1>
 	</div>
 
 	<div align="center">
+	
+	<table style="width:50%;">
+	
+	<tr>
+				<td>Date de Commande</td>
+				<td>${commande.DateDeCommande}</td>
+				</tr>
+				<tr>
+				<td>Nom Client</td>
+				<td>${client.name}</td>
+				</tr>
+				<tr>
+				<td>Adresse</td>
+				<td>${client.adresse}</td>
+				</tr>
+				<tr>
+				<td>Cout total</td>
+				<td>${panier.coutTotal}</td>
+				</tr>
+	
+	</table>
+	
+	
 		<table class="table table-striped">
 			
 			<tr bgcolor="grey" style="">
-				<th>ID</th>
 				<th>Nom</th>
-				<th>Description</th>
 				<th>Prix</th>
-				<th>Action</th>
+				<th>Quantité</th>
+				<th>Prix Total</th>
+				
 				
 			</tr>
-			<c:forEach var="prod" items="${listeProd}">
-			<tr bgcolor="lightyellow">
-				<td>${prod.id_p }</td>
-				<td>${prod.nom }</td>
-				<td>${prod.description }</td>
-				<td>${prod.prix }</td>
-				
-				<td><a href="${pageContext.request.contextPath}/Ecommerce/client/AjouterAuPanier/${prod.id_p}/1/${prod.categorie.id_c}">Ajouter au Panier</a></td>				
-			</tr>
-			</c:forEach>
+			<c:forEach var="ligne" items="${ListeArticle}">
+					<tr bgcolor="lightyellow">
+						<td>${ligne.produit.nom}</td>
+						<td>${ligne.prix}</td>
+						<td>${ligne.quantité}</td>
+						<td>${ligne.quantité*ligne.prix}</td>
+					</tr>
+				</c:forEach>
 		</table>
 	</div>
 </body>

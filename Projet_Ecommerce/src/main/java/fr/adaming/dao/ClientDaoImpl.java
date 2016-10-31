@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import fr.adaming.model.Category;
 import fr.adaming.model.Client;
 import fr.adaming.model.Commande;
+import fr.adaming.model.LigneDeCommande;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Product;
 
@@ -120,6 +121,20 @@ public class ClientDaoImpl implements IClientDao{
 		
 		return com;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LigneDeCommande> SearchLigneCommandeByIdCommande(int id_commande) {
+		 Session s = sf.getCurrentSession();
+			
+			Query req = s.createQuery("SELECT l FROM LigneDeCommande l WHERE idCommande=:id");
+			req.setParameter("id", id_commande);
+			
+			List<LigneDeCommande> liste = req.list();
+			
+			return liste;
+	}
+
 
 		
 }

@@ -29,6 +29,6 @@ public List<Product> SearchByAllProduits();
 	
 	public Commande SearchCommandByIdClient(int id_client);
 		
+	public List<LigneDeCommande> SearchLigneCommandeByIdCommande(int id_commande);
 	
-
 }

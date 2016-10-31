@@ -31,7 +31,10 @@ public class LigneDeCommande implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_produit")
 	private Product produit;
-
+	
+	@ManyToOne
+	@JoinColumn(name="idComande")
+	private Commande commande;
 	/**
 	 * 
 	 */

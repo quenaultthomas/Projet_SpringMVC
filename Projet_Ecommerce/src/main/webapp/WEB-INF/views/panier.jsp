@@ -18,6 +18,7 @@
 
 <a class="btn btn-default" href="retourAccueil" role="button">Accueil</a>
 <a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/retourListeCat" role="button">Liste des Catégories</a>
+<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/afficherCommande" role="button">Votre Commande</a>
 
 
 	<h1
@@ -34,7 +35,7 @@
 
 	<div align="center">
 		<form:form method="POST" action="ValiderCommande" modelAttribute="employe">
-			<table>
+			<table style="width:50%;">
 
 				<tr bgcolor="grey" style="">
 
@@ -63,6 +64,8 @@
 		</form:form>
 		
 		<h1>Le cout du panier est ${panier.coutTotal} euros</h1>
+		
+		<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/afficherCommande" role="button">Voir votre Commande</a>
 	</div>
 </body>
 </html>

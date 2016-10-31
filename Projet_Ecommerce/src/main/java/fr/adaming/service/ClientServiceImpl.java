@@ -70,6 +70,10 @@ public class ClientServiceImpl implements IClientService{
 		return clientDao.SearchCommandByIdClient(id_client);
 	}
 
-	
+	@Override
+	public List<LigneDeCommande> SearchLigneCommandeByIdCommande(int id_commande) {
+		return clientDao.SearchLigneCommandeByIdCommande(id_commande);
+	}
+
 
 }

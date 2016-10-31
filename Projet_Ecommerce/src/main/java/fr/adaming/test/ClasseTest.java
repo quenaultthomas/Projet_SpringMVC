@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import fr.adaming.model.Category;
+import fr.adaming.model.Commande;
+import fr.adaming.model.LigneDeCommande;
 import fr.adaming.model.Product;
 import fr.adaming.service.IClientService;
 
@@ -44,12 +46,18 @@ public class ClasseTest {
 				System.out.println(produit);
 	    	}   
 	        
-	        
-	        
-	        
 	    
 	     Product prod2 = clientService.SearchByIdProduct(1);
 	     System.out.println("\n Le prodiuit selectionnée est : "+prod2);
+	     
+	     
+	     Commande com = clientService.SearchCommandByIdClient(27);
+	     System.out.println(com);
+	     
+	     List<LigneDeCommande> liste = clientService.SearchLigneCommandeByIdCommande(17);
+	     for (LigneDeCommande l : liste) {
+			System.out.println(l);
+		}
 	}
 	
 		

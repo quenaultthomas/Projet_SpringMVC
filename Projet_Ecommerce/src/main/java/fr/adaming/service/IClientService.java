@@ -28,4 +28,7 @@ public List<Product> SearchByAllProduits();
 	public Commande passerCommande(Panier panier, Client client);
 	
 	public Commande SearchCommandByIdClient(int id_client);
+	
+	public List<LigneDeCommande> SearchLigneCommandeByIdCommande(int id_commande);
+	
 }

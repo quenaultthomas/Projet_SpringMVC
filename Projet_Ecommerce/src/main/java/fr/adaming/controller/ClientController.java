@@ -25,7 +25,7 @@ import fr.adaming.service.IClientService;
 
 @Controller
 @RequestMapping(value = "/Ecommerce/client")
-@SessionAttributes({"MonPanier","client","MaCommande"})
+@SessionAttributes({ "MonPanier", "client", "MaCommande" })
 
 public class ClientController {
 
@@ -42,7 +42,6 @@ public class ClientController {
 
 	Map<Integer, LigneDeCommande> Article = new HashMap<Integer, LigneDeCommande>();
 
-
 	@ModelAttribute("MonPanier")
 	public Panier panier() {
 		Panier panier = new Panier();
@@ -53,11 +52,12 @@ public class ClientController {
 		return panier;
 
 	}
-	
+
 	@ModelAttribute("client")
 	public Client client() {
 		Client client = new Client();
 
+		client.setId_client(0);
 		client.setName(null);
 		client.setMail(null);
 		client.setAdresse(null);
@@ -69,7 +69,7 @@ public class ClientController {
 
 	@ModelAttribute("MaCommande")
 	public Commande commande() {
-		Commande com =new Commande();
+		Commande com = new Commande();
 
 		com.setDateDeCommande(null);
 		com.setClient(null);
@@ -77,7 +77,7 @@ public class ClientController {
 		return com;
 
 	}
-	
+
 	@RequestMapping(value = "/listeCat", method = RequestMethod.GET)
 	public String getAllCategories(ModelMap model) {
 		List<Category> liste = clientService.GetAllCategorie();
@@ -99,7 +99,7 @@ public class ClientController {
 		model.addAttribute("listeCat", liste);
 		return "listeCat";
 	}
-	
+
 	@RequestMapping(value = "/retourListeProd/{id_cat}", method = RequestMethod.GET)
 	public String RetourListeProd(ModelMap model, @PathVariable("id_cat") int id_cat) {
 
@@ -109,11 +109,10 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/retourAccueil", method = RequestMethod.GET)
-	public String RetourAccueil(@ModelAttribute("client") Client client,ModelMap model) {
-		
+	public String RetourAccueil(@ModelAttribute("client") Client client, ModelMap model) {
+
 		model.addAttribute("entete", "Bienvenue monsieur " + client.getName());
-		model.addAttribute("salutation",
-				"Nous vous souhaitons une bonne journée.");
+		model.addAttribute("salutation", "Nous vous souhaitons une bonne journée.");
 		return "home";
 	}
 
@@ -136,25 +135,24 @@ public class ClientController {
 			ligneCommandeNew.setProduit(prod);
 
 			Article.put(prod.getId_p(), ligneCommandeNew);
-			
+
 			panier.getLigneCommande().add(ligneCommandeNew);
 
 		} else {
 			lcomm.setQuantité(lcomm.getQuantité() + qte);
-			
-			
+
 		}
 
 		double coutPanier = 0;
-		
+
 		for (LigneDeCommande ligne : Article.values()) {
 			coutPanier += ligne.getPrix() * ligne.getQuantité();
 		}
 
-		 panier.setCoutTotal(coutPanier);
-		
-		System.out.println("le cout du panier est " +coutPanier);
-		
+		panier.setCoutTotal(coutPanier);
+
+		System.out.println("le cout du panier est " + coutPanier);
+
 		////////////////////////////////////////////////////////////////////////////////////////////////
 
 		List<Product> liste = clientService.SearchByIdCategorie(id_cat);
@@ -165,133 +163,138 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/voirPanier", method = RequestMethod.GET)
-	public String VoirPanier(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client, ModelMap model) {
+	public String VoirPanier(@ModelAttribute("MonPanier") Panier panier, @ModelAttribute("client") Client client,
+			ModelMap model) {
 
 		List<LigneDeCommande> liste = panier.getLigneCommande();
 
-				
 		model.addAttribute("ListeArticle", liste);
 		model.addAttribute("panier", panier);
-		
+
 		model.addAttribute("entete", "Panier de monsieur : " + client.getName());
-		model.addAttribute("salutation",
-				"Pnsez à en acheter toujours plus.");
+		model.addAttribute("salutation", "Pnsez à en acheter toujours plus.");
 
 		return "panier";
 
 	}
-	
-	@RequestMapping(value="/formulaire", method=RequestMethod.GET)
-	public String initForm(ModelMap model){
-		
+
+	@RequestMapping(value = "/formulaire", method = RequestMethod.GET)
+	public String initForm(ModelMap model) {
+
 		model.addAttribute("client", new Client());
-		
+
 		model.addAttribute("entete", "Bienvenue, Merci de renseigner les informations suivantes");
 		model.addAttribute("salutation",
 				"Ces informations sont nécessaire au bon fonctionnement de notre site. Elles ne seront ni dévoilées ni divulguées à des fins commerciales");
-		
+
 		return "ajouterClient";
 	}
-	
-	//Methode pour soumettre le formulaire
-	@RequestMapping(value="/ajouter", method=RequestMethod.POST)
-	public String ajouterClient(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client, ModelMap model){
-		
+
+	// Methode pour soumettre le formulaire
+	@RequestMapping(value = "/ajouter", method = RequestMethod.POST)
+	public String ajouterClient(@ModelAttribute("MonPanier") Panier panier, @ModelAttribute("client") Client client,
+			ModelMap model) {
+
 		Client cl = new Client();
-		
+
 		cl.setName(client.getName());
 		cl.setMail(client.getMail());
 		cl.setAdresse(client.getAdresse());
 		cl.setTelephone(client.getTelephone());
-		
+
 		model.addAttribute("client", cl);
-		
-		
-		
+
 		model.addAttribute("entete", "Bienvenue monsieur " + client.getName());
-		model.addAttribute("salutation",
-				"Nous vous souhaitons une bonne journée.");
+		model.addAttribute("salutation", "Nous vous souhaitons une bonne journée.");
 
 		return "home";
-		
-	}
-		
-		@RequestMapping(value="/ValiderCommande", method=RequestMethod.POST)
-		public String ValiderCommande(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client,
-				ModelMap model){
-					
-			
-			System.out.println("le nom est : " + client.getName());
-			
-			Client cl =new Client();
-			
-			cl.setName(client.getName());
-			cl.setMail(client.getMail());
-			cl.setAdresse(client.getAdresse());
-			cl.setTelephone(client.getTelephone());
-			
-			System.out.println(cl);
-			
-			Commande commande = clientService.passerCommande(panier, cl);
-			
-			
-			model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
-			model.addAttribute("salutation",
-					"Vous allez pouvoir acheter des produits ayant appartenues à notre legende à tous.");
 
-			return "home";
-		
 	}
-		
-		@RequestMapping(value="/deleteArticle/{id_p}", method=RequestMethod.GET)
-		public String deleteArticle(@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client,@PathVariable("id_p") int id_p, ModelMap model){
-				
-			List<LigneDeCommande> liste = panier.getLigneCommande();
-			
-			Product prod = clientService.SearchByIdProduct(id_p);
-			
-			LigneDeCommande lcomm = Article.get(prod.getId_p());
-			
-			
-			
-			if(lcomm.getQuantité()>0){
-				
-				lcomm.setQuantité(lcomm.getQuantité()-1);
-				
-			}else{
-				
-				liste.remove(lcomm);
-				
-			}
-			
-			
-			
-			double coutPanier = 0;
-			
-			for (LigneDeCommande ligne : Article.values()) {
-				coutPanier += ligne.getPrix() * ligne.getQuantité();
-			}
 
-			 panier.setCoutTotal(coutPanier);
-			
-			model.addAttribute("ListeArticle", liste);
-			model.addAttribute("panier", panier);
-			
-			model.addAttribute("entete", "Panier de monsieur : " + client.getName());
-			model.addAttribute("salutation",
-					"Pensez à en acheter toujours plus.");
-			
-			return "panier";
+	@RequestMapping(value = "/ValiderCommande", method = RequestMethod.POST)
+	public String ValiderCommande(@ModelAttribute("MonPanier") Panier panier, @ModelAttribute("client") Client client,
+			ModelMap model) {
+
+		System.out.println("le nom est : " + client.getName());
+
+		Client cl = new Client();
+
+		cl.setName(client.getName());
+		cl.setMail(client.getMail());
+		cl.setAdresse(client.getAdresse());
+		cl.setTelephone(client.getTelephone());
+
+		System.out.println(cl);
+
+		Commande commande = clientService.passerCommande(panier, cl);
+
+		model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
+		model.addAttribute("salutation",
+				"Vous allez pouvoir acheter des produits ayant appartenues à notre legende à tous.");
+
+		return "home";
+
+	}
+
+	@RequestMapping(value = "/deleteArticle/{id_p}", method = RequestMethod.GET)
+	public String deleteArticle(@ModelAttribute("MonPanier") Panier panier, @ModelAttribute("client") Client client,
+			@PathVariable("id_p") int id_p, ModelMap model) {
+
+		List<LigneDeCommande> liste = panier.getLigneCommande();
+
+		Product prod = clientService.SearchByIdProduct(id_p);
+
+		LigneDeCommande lcomm = Article.get(prod.getId_p());
+
+		if (lcomm.getQuantité() > 0) {
+
+			lcomm.setQuantité(lcomm.getQuantité() - 1);
+
+		} else {
+
+			liste.remove(lcomm);
+
 		}
-	
-		@RequestMapping(value="/afficherCommande/{id_client}", method=RequestMethod.GET)
-		public String affficherCommande(@ModelAttribute("MaCommande") Commande commande,@ModelAttribute("MonPanier") Panier panier,@ModelAttribute("client") Client client,@PathVariable("id_client") int id_client, ModelMap model){
-			
-			
-			
-			
-			return "affichageCommande";
-			
+
+		double coutPanier = 0;
+
+		for (LigneDeCommande ligne : Article.values()) {
+			coutPanier += ligne.getPrix() * ligne.getQuantité();
 		}
-	
+
+		panier.setCoutTotal(coutPanier);
+
+		model.addAttribute("ListeArticle", liste);
+		model.addAttribute("panier", panier);
+
+		model.addAttribute("entete", "Panier de monsieur : " + client.getName());
+		model.addAttribute("salutation", "Pensez à en acheter toujours plus.");
+
+		return "panier";
+	}
+
+	@RequestMapping(value = "/afficherCommande", method = RequestMethod.GET)
+	public String affficherCommande(@ModelAttribute("MaCommande") Commande commande,
+			@ModelAttribute("MonPanier") Panier panier, @ModelAttribute("client") Client client, ModelMap model) {
+
+		List<LigneDeCommande> liste = panier.getLigneCommande();
+			
+		double coutPanier = 0;
+
+		for (LigneDeCommande ligne : Article.values()) {
+			coutPanier += ligne.getPrix() * ligne.getQuantité();
+		}
+
+		panier.setCoutTotal(coutPanier);
+
+		model.addAttribute("panier", panier);
+				
+		
+
+		model.addAttribute("ListeArticle", liste);
+
+		return "commande";
+
+	}
+
 }

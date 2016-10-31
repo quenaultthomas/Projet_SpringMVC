@@ -23,6 +23,9 @@
 	<a class="btn btn-default"
 		href="${pageContext.request.contextPath}/Ecommerce/client/voirPanier"
 		role="button">Panier</a>
+	<a class="btn btn-default"
+		href="${pageContext.request.contextPath}/Ecommerce/client/afficherCommande"
+		role="button">Votre Commande</a>
 
 
 	<h1
@@ -36,7 +39,7 @@
 
 	<table align="center" cellspacing="10">
 		<tr style="color: blue; font-style: italic; font-size: 14pt;">
-			<td align="left">Cliquer Ici : </td>
+			<td align="left">Cliquer Ici :</td>
 			<td align="right"><a href="listeCat">Liste des Categories</a></td>
 		</tr>
 	</table>
