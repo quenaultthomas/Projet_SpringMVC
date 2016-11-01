@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,14 +24,17 @@ public class Gestionnaire implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_gestionnaire")
 	private Long Id_g;
+	
+	@Column(name="username")
 	private String login;
 	private String password;
 	
+	private boolean actived;
 	
-//	private List<Category> listCat;
-//	
-//	
-//	private List<Product> listProd;
+	@OneToMany(mappedBy="gestio")
+	private List<Role> roles;
+	
+	
 	
 	
 	/**
@@ -40,46 +44,48 @@ public class Gestionnaire implements Serializable {
 		super();
 	}
 	
-	/** Constructeur avec paramètres, sans ID
+	
+	
+	/** Constructeur avec paramètres, sans id
 	 * @param login
 	 * @param password
+	 * @param actived
+	 * @param roles
 	 */
-	public Gestionnaire(String login, String password) {
+	public Gestionnaire(String login, String password, boolean actived,
+			List<Role> roles) {
 		super();
 		this.login = login;
 		this.password = password;
+		this.actived = actived;
+		this.roles = roles;
 	}
+	
+	
 
-	/** Constructeur avec paramètres et ID
+	/** Constructeur avec paramètres + ID
 	 * @param id_g
 	 * @param login
 	 * @param password
+	 * @param actived
+	 * @param roles
 	 */
-	public Gestionnaire(Long id_g, String login, String password) {
+	public Gestionnaire(Long id_g, String login, String password,
+			boolean actived, List<Role> roles) {
 		super();
 		Id_g = id_g;
 		this.login = login;
 		this.password = password;
+		this.actived = actived;
+		this.roles = roles;
 	}
-	
+
+
+
 	/** Getters & setters*/
 	
 	
-//	public List<Category> getListCat() {
-//		return listCat;
-//	}
-//
-//	public void setListCat(List<Category> listCat) {
-//		this.listCat = listCat;
-//	}
-//
-//	public List<Product> getListProd() {
-//		return listProd;
-//	}
-//
-//	public void setListProd(List<Product> listProd) {
-//		this.listProd = listProd;
-//	}
+
 
 	public Long getId_g() {
 		return Id_g;
@@ -105,6 +111,44 @@ public class Gestionnaire implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
+
+	/**
+	 * @return the actived
+	 */
+	public boolean isActived() {
+		return actived;
+	}
+
+
+
+	/**
+	 * @param actived the actived to set
+	 */
+	public void setActived(boolean actived) {
+		this.actived = actived;
+	}
+
+
+
+	/**
+	 * @return the roles
+	 */
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+
 
 	/** toString*/
 	@Override

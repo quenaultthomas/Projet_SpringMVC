@@ -5,14 +5,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="<c:url value="/ressources/styles/bootstrap.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/ressources/javascript/bootstrap.js" />"></script>
+    
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste des Catégories</title>
 </head>
 <body>
 
-	<div align="right">
-		<a href="${pageContext.request.contextPath}/Ecommerce/gestio/listeProdG">Liste des Produits</a>
-	</div>
+	<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/gestio/formulaireCat">Ajouter</a>
+	<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/gestio/listeProdG">Liste des Produits</a>
+	<a class="btn btn-default" href="<c:url value="/j_spring_security_logout"/>">Logout</a>
+	
+
+	
 
 	<div align="right">
 		<a href="retourAccueilG">Accueil</a>
@@ -23,10 +30,9 @@
 			Categories</h1>
 	</div>
 	</br>
-	<td><a href="formulaireCat">Ajouter</a></td>
-
+	
 	<div align="center">
-		<table>
+		<table class="table table-striped" style="width:50%;">
 			
 			<tr bgcolor="grey" style="">
 				
@@ -43,8 +49,8 @@
 				<td>${cat.id_c }</td>
 				<td>${cat.nom }</td>
 				<td>${cat.description }</td>
-				<td><a href="modifCat?IdCat=${cat.id_c}">modifier</a></td>
-				<td><a href="supprimerCat/${cat.id_c}">supprimer</a></td>	
+				<td><a href="${pageContext.request.contextPath}/Ecommerce/gestio/modifCat?IdCat=${cat.id_c}">modifier</a></td>
+				<td><a href="${pageContext.request.contextPath}/Ecommerce/gestio/supprimerCat/${cat.id_c}">supprimer</a></td>	
 			</tr>
 			</c:forEach>
 		</table>

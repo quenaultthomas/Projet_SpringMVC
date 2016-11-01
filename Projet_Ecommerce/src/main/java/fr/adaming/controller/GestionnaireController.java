@@ -18,25 +18,34 @@ import fr.adaming.service.IGestionnaireService;
 @RequestMapping(value="/Ecommerce/gestio")
 public class GestionnaireController {
 	
+	/** Déclaration du gestionnaireService pour faire appel aux méthodes de la couche service*/
 	@Autowired
 	private IGestionnaireService gestioService;
 	
 	
 	
-	/**
+	/** Setters du gestionnaireService
 	 * @param gestioService the gestioService to set
 	 */
 	public void setGestioService(IGestionnaireService gestioService) {
 		this.gestioService = gestioService;
 	}
 
+	
+	@RequestMapping(value="/loginG", method=RequestMethod.GET)		
+	public String loginGestio(ModelMap gestio){
+		
+		gestio.addAttribute("login", "Veuillez vous identifier");
+		
+		return "loginG";
+		
+	}
 
 
 	@RequestMapping(value="/index", method=RequestMethod.GET)		
 	public String welcomeGestio(ModelMap gestio){
 		
 		gestio.addAttribute("entete","Bienvenue Gestionnaire!");
-		gestio.addAttribute("login", "Veuillez vous identifier");
 		
 		return "homeG";
 		
@@ -123,6 +132,9 @@ public class GestionnaireController {
 		
 		gestio.addAttribute("produit", new Product());
 		
+		List<Category> liste=gestioService.getAllCategoriesService();
+		gestio.addAttribute("listeCatG", liste);
+		
 		return "ajouterProd";
 		
 	}
@@ -146,11 +158,14 @@ public class GestionnaireController {
 	}
 		
 	
-	@RequestMapping(value="/modifProd", method=RequestMethod.GET)
+	@RequestMapping(value="/modifierProd", method=RequestMethod.GET)
 	public String formulaireModifProd(int IdProd, ModelMap gestio){
 		
 		Product prod = gestioService.getProductByIdService(IdProd);
 		gestio.addAttribute("produit",prod);
+		
+		List<Category> liste=gestioService.getAllCategoriesService();
+		gestio.addAttribute("listeCatG", liste);
 		
 		return "ajouterProd";
 	}

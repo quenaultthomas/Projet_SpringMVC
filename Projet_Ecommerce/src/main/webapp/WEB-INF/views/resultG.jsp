@@ -6,6 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="<c:url value="/ressources/styles/bootstrap.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/ressources/javascript/bootstrap.js" />"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Resultat de votre recherche</title>
 </head>
@@ -32,7 +36,7 @@
 	
 
 	<div align="center">
-		<table>
+		<table class="table table-striped" style="width:50%;">
 			
 			<tr bgcolor="grey" style="">
 				

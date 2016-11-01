@@ -31,7 +31,7 @@ Veuillez sélectionner votre situation
 		</tr>
 		<tr style="color:blue; font-style: italic; font-size: 14pt;">
 			<td align="left">Cliquer Ici</td>
-			<td align="right"><a href="Ecommerce/gestio/index">Coté admin</a></td>
+			<td align="right"><a href="Ecommerce/gestio/loginG">Coté admin</a></td>
 		</tr>
 	</table>
 </body>

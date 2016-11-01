@@ -14,21 +14,20 @@
 	<bean id="dataSourceBean1"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${db.driverClass}" />
-		<property name="url"
-			value="${db.url}" />
+		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}"></property>
 	</bean>
 
 	<!-- Configuration de l'autorisation -->
 	<security:http>
-		<security:intercept-url pattern="/gestio/**"
+		<security:intercept-url pattern="Ecommerce/gestio/**"
 			access="ROLE_ADMIN" />
 
-		<security:form-login login-page="/login"
-			default-target-url="/employe/index" authentication-failure-url="/login" />
+		<security:form-login login-page="/gestio/loginG"
+			default-target-url="/Ecommerce/gestio/index" authentication-failure-url="/gestio/loginG"/>
 
-		<security:logout logout-success-url="/logout" />
+		<security:logout logout-success-url="/gestio/logout" />
 
 	</security:http>
 
@@ -38,13 +37,8 @@
 
 			<security:jdbc-user-service
 				data-source-ref="dataSourceBean1"
-				users-by-username-query="select username,password,actived from users where username=?"
-				authorities-by-username-query="select u.username, r.rolename from users u, roles r where u.id_user=r.user_id and u.username=?" />
-
-			<!-- <security:user-service> -->
-			<!-- <security:user name="a" password="a" authorities="ROLE_ADMIN" /> -->
-			<!-- </security:user-service> -->
+				users-by-username-query="select login,password,actived from gestionnaires where login=?"
+				authorities-by-username-query="select g.login, r.rolename from gestionnaires g, roles r where g.id_g=r.gestio_id and g.login=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
-
 </beans>
