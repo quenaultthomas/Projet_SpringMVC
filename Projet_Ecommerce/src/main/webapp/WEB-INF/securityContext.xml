@@ -21,13 +21,13 @@
 
 	<!-- Configuration de l'autorisation -->
 	<security:http>
-		<security:intercept-url pattern="Ecommerce/gestio/**"
+		<security:intercept-url pattern="/Ecommerce/gestio/**"
 			access="ROLE_ADMIN" />
 
-		<security:form-login login-page="/gestio/loginG"
-			default-target-url="/Ecommerce/gestio/index" authentication-failure-url="/gestio/loginG"/>
+		<security:form-login login-page="/login"
+			default-target-url="/Ecommerce/gestio/index" authentication-failure-url="/login"/>
 
-		<security:logout logout-success-url="/gestio/logout" />
+		<security:logout logout-success-url="/logout" />
 
 	</security:http>
 
@@ -38,7 +38,7 @@
 			<security:jdbc-user-service
 				data-source-ref="dataSourceBean1"
 				users-by-username-query="select login,password,actived from gestionnaires where login=?"
-				authorities-by-username-query="select g.login, r.rolename from gestionnaires g, roles r where g.id_g=r.gestio_id and g.login=?" />
+				authorities-by-username-query="select g.login, r.rolename from gestionnaires g, roles r where g.id_gestionnaire=r.gestio_id and g.login=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>

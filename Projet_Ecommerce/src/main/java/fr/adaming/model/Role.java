@@ -18,7 +18,7 @@ public class Role {
 	private String rolename;
 	
 	@ManyToOne
-	@JoinColumn (name="gestio_id", referencedColumnName="id_g")
+	@JoinColumn (name="gestio_id", referencedColumnName="id_gestionnaire")
 	private Gestionnaire gestio;
 
 	/**
