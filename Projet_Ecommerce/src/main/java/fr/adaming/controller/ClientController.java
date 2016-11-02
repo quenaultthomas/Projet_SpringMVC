@@ -214,7 +214,7 @@ public class ClientController {
 		model.addAttribute("panier", panier);
 
 		model.addAttribute("entete", "Panier de monsieur : " + client.getName());
-		model.addAttribute("salutation", "Pnsez à en acheter toujours plus.");
+		model.addAttribute("salutation", "Pensez à en acheter toujours plus.");
 
 		return "panier";
 
@@ -289,7 +289,7 @@ public class ClientController {
 
 		commande = clientService.passerCommande(panier, cl);
 		
-		
+				
 		model.addAttribute("commande", commande);
 		model.addAttribute("entete", "Bienvenue aux client du Site FRANCIS LA LEGENDE");
 		model.addAttribute("salutation",
