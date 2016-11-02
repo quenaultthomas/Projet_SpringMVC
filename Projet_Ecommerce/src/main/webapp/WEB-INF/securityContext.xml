@@ -37,8 +37,8 @@
 
 			<security:jdbc-user-service
 				data-source-ref="dataSourceBean1"
-				users-by-username-query="select login,password,actived from gestionnaires where login=?"
-				authorities-by-username-query="select g.login, r.rolename from gestionnaires g, roles r where g.id_gestionnaire=r.gestio_id and g.login=?" />
+				users-by-username-query="select username,password,actived from gestionnaires where username=?"
+				authorities-by-username-query="select g.username, r.rolename from gestionnaires g, roles r where g.id_gestionnaire=r.gestio_id and g.username=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 </beans>

@@ -32,14 +32,16 @@ public class GestionnaireController {
 	}
 
 	
-	@RequestMapping(value="/loginG", method=RequestMethod.GET)		
-	public String loginGestio(ModelMap gestio){
-		
-		gestio.addAttribute("login", "Veuillez vous identifier");
-		
-		return "loginG";
-		
-	}
+	//A ne pas faire !! la premiere methode appelée est "/index"
+	
+//	@RequestMapping(value="/loginG", method=RequestMethod.GET)		
+//	public String loginGestio(ModelMap gestio){
+//		
+//		gestio.addAttribute("login", "Veuillez vous identifier");
+//		
+//		return "loginG";
+//		
+//	}
 
 
 	@RequestMapping(value="/index", method=RequestMethod.GET)		
