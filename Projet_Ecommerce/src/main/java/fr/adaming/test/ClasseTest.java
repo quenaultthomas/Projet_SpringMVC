@@ -1,5 +1,6 @@
 package fr.adaming.test;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -58,6 +59,11 @@ public class ClasseTest {
 	     for (LigneDeCommande l : liste) {
 			System.out.println(l);
 		}
+	     
+	     
+	     Calendar c = Calendar.getInstance ();
+	    System.out.println(c.getTime());
+	     
 	}
 	
 		

@@ -1,5 +1,6 @@
 package fr.adaming.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -28,6 +29,9 @@ public class ClientDaoImpl implements IClientDao{
 		this.sf = sf;
 	}
 	
+	/**
+	 * methode permettant la recherche de tous les produits 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchByAllProduits() {
@@ -37,6 +41,9 @@ public class ClientDaoImpl implements IClientDao{
 		return reqAllProduit.list();
 	}
 
+	/**
+	 * methode permettant la recherche des produits par mots clés
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchByKeyWord(String keyWord) {
@@ -47,6 +54,9 @@ public class ClientDaoImpl implements IClientDao{
 		return req.list();
 	}
 
+	/**
+	 * methode permettant la recherche des produits en fonction de la catégories sélectionnées
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchByIdCategorie(int  id_cat) {
@@ -59,12 +69,18 @@ public class ClientDaoImpl implements IClientDao{
 		
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public List<Product> SearchByProduitSelectionne() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * afficher la liste des catégories .
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> GetAllCategorie() {
@@ -74,6 +90,9 @@ public class ClientDaoImpl implements IClientDao{
 		return req.list();
 	}
 
+	/**
+	 * methode permettant l'ajout du client
+	 */
 	@Override
 	public Client addClient(Client cl) {
 		Session s = sf.getCurrentSession();
@@ -83,6 +102,9 @@ public class ClientDaoImpl implements IClientDao{
 		
 	}
 
+	/**
+	 * recherche du produit par son id
+	 */
 	@Override
 	public Product SearchByIdProduct(int id_prod) {
 		Session s = sf.getCurrentSession();
@@ -91,6 +113,9 @@ public class ClientDaoImpl implements IClientDao{
 				
 	}
 
+	/**
+	 * methode permettant la validation de la commande
+	 */
 	@Override
 	public Commande passerCommande(Panier panier, Client client) {
 		
@@ -100,7 +125,9 @@ public class ClientDaoImpl implements IClientDao{
 			
 			Commande commande = new Commande();
 			
+			Calendar c = Calendar.getInstance ();
 			
+			commande.setDateDeCommande(c.getTime());
 			commande.setClient(client);
 			commande.setLigneCommandes(panier.getArticle());
 			s.persist(commande);
@@ -109,7 +136,9 @@ public class ClientDaoImpl implements IClientDao{
 			return commande;
 	}
 
-	
+	/**
+	 * methode permettant la recherche de la commande concernant un client
+	 */
 	@Override
 	public Commande SearchCommandByIdClient(int id_client) {
         Session s = sf.getCurrentSession();
@@ -122,6 +151,9 @@ public class ClientDaoImpl implements IClientDao{
 		return com;
 	}
 
+	/**
+	 * methode permettant la recherche des lignes de commandes 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LigneDeCommande> SearchLigneCommandeByIdCommande(int id_commande) {
