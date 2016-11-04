@@ -65,7 +65,7 @@
 		
 		<h1>Le cout du panier est ${panier.coutTotal} euros</h1>
 		
-		<a class="btn btn-default" href="${pageContext.request.contextPath}/Ecommerce/client/afficherCommande" role="button">Voir votre Commande</a>
+		
 	</div>
 </body>
 </html>
